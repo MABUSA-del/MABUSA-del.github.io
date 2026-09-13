@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BMW 325i | Home</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+            background: linear-gradient(135deg,#f7f4ee 0%, #ffffff 55%, #1743e3 100% );
+            min-height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 100%;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .logo {
+            position: absolute;
+            left: 8%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 3px solid white;
+
+            background: conic-gradient(#1743e3 0deg 90deg,  white 90deg 180deg, #1743e3 180deg 270deg, white 270deg 360deg);
+           box-shadow: 0 0 8px rgba(23, 67, 227, 0.5);
+        }
+
+        .navigation {
+            display: flex;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+            transition: 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .navigation a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 3px;
+            background: #1743e3;
+            transition: 0.3s ease;
+        }
+
+        .navigation a:hover {
+            color: #4c72ff;
+        }
+
+        .navigation a:hover::after {
+            width: 100%;
+        }
+
+       
+
+        .hero {
+            width: 100%;
+            max-width: 100%;
+            min-height: 300px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 45px 20px 30px;
+        }
+
+        .hero h1 {
+            width: 100%;
+            max-width: 100%;
+
+            font-size: clamp(38px, 6vw, 70px);
+            color: #111;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            overflow-wrap: break-word;
+        }
+
+        .hero h3 {
+            font-size: 22px;
+            color: #1743e3;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            width: 100%;
+            max-width: 700px;
+
+            font-size: 17px;
+            line-height: 1.8;
+            color: #555;
+
+            overflow-wrap: break-word;
+        }
+
+        .hero-line {
+            width: 90px;
+            max-width: 90%;
+            height: 4px;
+            background: #1743e3;
+            margin: 15px auto;
+            border-radius: 10px;
+        }
+
+      
+
+        .image-section {
+            width: 100%;
+            max-width: 1200px;
+
+            margin: 0 auto 40px;
+            padding: 0 25px;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .image-card {
+            width: 100%;
+            min-width: 0;
+
+            background: #050505;
+            padding: 12px;
+            border-radius: 20px;
+            overflow: hidden;
+
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .image-card img {
+            width: 100%;
+            max-width: 100%;
+            height: 210px;
+
+            object-fit: cover;
+
+            border-radius: 12px;
+            display: block;
+
+            transition: transform 0.5s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+      
+
+        .info-section {
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 10px 25px 70px;
+
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            width: 100%;
+            min-width: 0;
+
+            background: rgba(255, 255, 255, 0.9);
+
+            padding: 35px;
+            border-radius: 25px;
+
+            border-top: 1px solid rgba(0, 0, 0, 0.15);
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .info-card h2 {
+            font-size: 25px;
+            margin-bottom: 18px;
+            color: #111;
+        }
+
+        .info-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            overflow-wrap: break-word;
+        }
+
+      
+
+        footer {
+            width: 100%;
+
+            background: #050505;
+            color: #aaa;
+
+            text-align: center;
+
+            padding: 25px 15px;
+
+            font-size: 14px;
+        }
+
+        footer span {
+            color: #1743e3;
+        }
+
+       
+
+        @media (max-width: 900px) {
+
+            .header {
+                padding: 18px 5%;
+            }
+
+            .logo {
+                left: 5%;
+            }
+
+            .navigation {
+                gap: 25px;
+            }
+
+            .image-section {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .image-card:last-child {
+                grid-column: span 2;
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 280px;
+                padding-top: 40px;
+            }
+        }
+
+       
+
+        @media (max-width: 600px) {
+
+            .header {
+                width: 100%;
+                padding: 12px 15px;
+
+                justify-content: flex-end;
+            }
+
+            .logo {
+                position: absolute;
+                left: 15px;
+            }
+
+            .logo-circle {
+                width: 38px;
+                height: 38px;
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .navigation {
+                gap: 18px;
+                margin-left: auto;
+            }
+
+            .navigation a {
+                font-size: 12px;
+                letter-spacing: 0.5px;
+            }
+
+            
+
+            .hero {
+                width: 100%;
+                min-height: auto;
+
+                padding: 35px 18px 30px;
+            }
+
+            .hero h1 {
+                font-size: clamp(32px, 10vw, 42px);
+                letter-spacing: 1px;
+                line-height: 1.15;
+            }
+
+            .hero h3 {
+                font-size: 17px;
+                letter-spacing: 3px;
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+           
+
+            .image-section {
+                width: 100%;
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+
+                padding: 0 18px;
+                margin-bottom: 30px;
+            }
+
+            .image-card {
+                width: 100%;
+                padding: 8px;
+                border-radius: 16px;
+            }
+
+            .image-card:last-child {
+                grid-column: span 1;
+            }
+
+            .image-card img {
+                width: 100%;
+                height: 200px;
+                border-radius: 10px;
+            }
+
+           
+
+            .info-section {
+                width: 100%;
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+
+                padding: 10px 18px 50px;
+            }
+
+            .info-card {
+                width: 100%;
+
+                padding: 25px;
+
+                border-radius: 20px;
+            }
+
+            .info-card h2 {
+                font-size: 21px;
+                line-height: 1.3;
+            }
+
+            .info-card p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+
+            footer {
+                font-size: 13px;
+                padding: 22px 15px;
+            }
+        }
+
+      
+
+        @media (max-width: 380px) {
+
+            .header {
+                padding: 12px 10px;
+            }
+
+            .logo {
+                left: 10px;
+            }
+
+            .navigation {
+                gap: 12px;
+            }
+
+            .navigation a {
+                font-size: 10px;
+            }
+
+            .hero {
+                padding-top: 30px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .hero h3 {
+                font-size: 15px;
+                letter-spacing: 2px;
+            }
+
+            .image-section {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .info-section {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .info-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <div class="logo-circle"></div>
+        <span>BMW 325i</span>
+    </div>
+
+    <nav class="navigation">
+        <a href="home.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="models.html">MODELS</a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>BMW 325i</h1>
+
+    <div class="hero-line"></div>
+
+    <h3>3 Series</h3>
+
+    <p>
+        Discover the history, performance and evolution of one of
+        BMW's most iconic sports sedans.
+    </p>
+
+</section>
+
+
+<section class="image-section">
+
+    <div class="image-card">
+        <img src="black.jpg" alt="Black BMW 325i">
+    </div>
+
+    <div class="image-card">
+        <img src="twored.jpg" alt="Red BMW 325i">
+    </div>
+
+    <div class="image-card">
+        <img src="engine.jpg" alt="BMW 325i engine">
+    </div>
+
+</section>
+
+
+<section class="info-section">
+
+    <article class="info-card">
+
+        <h2>BMW 325i Performance</h2>
+
+        <p>
+            The BMW 325i is known for its smooth inline-six engine,
+            balanced handling and rear-wheel-drive performance.
+            It combines strong acceleration with precise control,
+            making it a popular choice for drivers who enjoy a
+            sporty and responsive driving experience.
+        </p>
+
+    </article>
+
+
+    <article class="info-card">
+
+        <h2>The BMW 325i Experience</h2>
+
+        <p>
+            From its classic styling to its driver-focused design,
+            the BMW 325i has become an important part of the 3 Series
+            history. Explore the different generations, discover
+            their designs and learn what makes the 325i special to
+            BMW enthusiasts.
+        </p>
+
+    </article>
+
+</section>
+
+
+<footer>
+    © 2025 <span>BMW 325i</span> | All Rights Reserved
+</footer>
+
+</body>
+</html>
